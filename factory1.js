@@ -38,15 +38,3 @@ employees.forEach(emp =>
         say.call(emp);
     }
 );
-
-function EmployeeFactory()
-{
-    this.create = (name, charge) => 
-    {
-        const employeeCharge = {
-            Developer,
-            Tester
-        }
-        return new employeeCharge[charge](name)
-    }
-}
