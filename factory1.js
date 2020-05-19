@@ -1,40 +1,52 @@
 function Developer(name)
 {
     this.name = name;
-    this.type = "Developer";
+    this.job = "Developer";
 };
 
 function Tester(name)
 {
     this.name = name;
-    this.type = "Tester";
+    this.job = "Tester";
 };
 
 function EmployeeFactory()
 {
-    this.create = (name, type) => 
+    this.create = (name, job) => 
     {
         const employeeCharge = {
-            1: Developer,
-            2: Tester
+            Developer,
+            Tester
         };
-        return new employeeCharge[type](name);
+        return new employeeCharge[job](name);
     };
 };
 
 function say()
 {
-    console.log(`Hi, I am ${this.name} and I am a ${this.type}`);
+    console.log(`Hi, I am ${this.name} and I am a ${this.job}`);
 };
 
 const employeeFactory = new EmployeeFactory();
 const employees = [];
 
-employees.push(employeeFactory.create("Patrick", 1));
-employees.push(employeeFactory.create("John", 2));
+employees.push(employeeFactory.create("Patrick", "Developer"));
+employees.push(employeeFactory.create("John", "Tester"));
 
 employees.forEach(emp => 
     {
         say.call(emp);
     }
 );
+
+function EmployeeFactory()
+{
+    this.create = (name, charge) => 
+    {
+        const employeeCharge = {
+            Developer,
+            Tester
+        }
+        return new employeeCharge[charge](name)
+    }
+}
